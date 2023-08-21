@@ -1,0 +1,11 @@
+insertDLR= insert into tbl_dlr (ani,channel_name,status_name,svc_name,amount,campaign_id,next_billed_date,last_billed_date,type,sub_date_time,result_name) values ('<ani>','<channel_name>','<status_name>','<svc_name>','<amount>','<campaign_id>','<next_billed_date>','<last_billed_date>','<type>','<sub_date_time>','<result_name>')
+getDLR= select ani,svc_name,channel_name,status_name,amount,campaign_id,next_billed_date,last_billed_date,sub_date_time,result_name from tbl_dlr where status = 0 and type='<type>' limit 100
+getsvc= select keyword from keywordmaster where description='<desc>' and status=0
+Update_DLR = update tbl_dlr set status='1' where ani='<ani>' and svc_name='<servicename>' and type='<type>'
+check_User = select count(1) from tbl_subscription where ani='<ani>' and service_type='<service_type>'
+Sub_Update = update tbl_subscription set m_act='<m_act>',next_billed_date='<next_billed_date>',last_billed_date='<last_billed_date>',default_amount='<amount>' where ani='<ani>' and service_type='<servicename>'
+Sub_Insert = insert into tbl_subscription (ani,sub_date_time,unsub_date_time,m_act,lang,service_type,status,charging_date,billing_date,default_amount,RECORDSTATUS,pack_type,`next_billed_date`,`last_billed_date`) values ('<ani>','<sub_date_time>',NULL,'<m_act>','e','<servicename>','Active',NULL,NULL,'<amount>','1','Daily','<next_billed_date>','<last_billed_date>')
+Billing_Insert = insert into tbl_billing_success(ani,DEDUCTED_AMOUNT,ERRORDESC,TYPE_EVENT,MODE,SUBMODE,PROCESS_DATETIME,servicename) values ('<ani>','<amount>','NULL','<type_event>','<m_act>','<m_act>',now(),'<servicename>')
+Unsub_user= update tbl_subscription set unsub_date_time = now(),m_deact='<m_deact>',STATUS ='<action>' where ani ='<ani>' and service_type='<servicename>'
+Insert_Unsub= insert into tbl_subscription_unsub select * from tbl_subscription where ani='<ani>' and service_type='<servicename>'
+Delete_Sub= delete from tbl_subscription where ani='<ani>' and service_type='<servicename>'
